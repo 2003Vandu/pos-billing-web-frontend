@@ -1,0 +1,7 @@
+.item-image img
+{
+    width:70px;
+    height:70px;
+    border-radius: 12px;
+    border: 6px solid rgb(255, 255, 255)
+}
