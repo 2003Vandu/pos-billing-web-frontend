@@ -18,7 +18,6 @@ const ItemList=()=>{
 
     // function for searching a item 
     const filterItems = itemsData.filter((item) => {
-           console.log(item);
             return item.name?.toLowerCase().includes(searchTerm.toLowerCase());
       });
 
