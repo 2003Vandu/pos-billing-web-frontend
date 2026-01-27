@@ -12,8 +12,39 @@ export const AppContextProvider=(props) =>{
      //For login details store
      const [auth,  setAuth] = useState({token:null, role:null})
 
+     //cartitem component **>>for CartItemComponent
+     const [cartItems, setCartItems]= useState([]);
 
-    // creat useeffect we can automatically load a categories
+    {/** function for the cartitem component inside explore  */} //**>>for CartItemComponent
+    const addToCart = (item) => {
+  setCartItems(prevCartItems => {
+    const existingItem = prevCartItems.find(cartItem => cartItem.itemid === item.itemid);
+    if (existingItem) {
+      return prevCartItems.map(cartItem =>
+        cartItem.itemid === item.itemid
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
+      );
+    } else {
+      return [...prevCartItems, { ...item, quantity: 1 }];
+    }
+  });
+};
+
+    // we add a function in cartitem  remove -  add/updatequantity + and delete button  **>>for CartItemComponent
+    const removeFromCart =(itemid)=>{
+        setCartItems(cartItems.filter(item=> item.itemid !== itemid))
+    }
+
+    //updatequantity **>>for CartItemComponent
+    const updateQuantity =(itemid,newQuantity)=>{
+      setCartItems(cartItems.map(item=> item.itemid == itemid ?
+        {...item, quantity: newQuantity}:item
+      ));
+    }
+    
+
+    // creat useeffect we can automatically load a categories 
     useEffect(()=>{
          async function loadData(){
               
@@ -48,7 +79,12 @@ export const AppContextProvider=(props) =>{
         auth,
         setAuthData: setAuthData,
         itemsData,
-        setItemsData: setItemsData
+        setItemsData: setItemsData,
+        cartItems,
+        setCartItems: setCartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity
     }
     return <AppContext.Provider value={contextValue} >
               {props.children}
