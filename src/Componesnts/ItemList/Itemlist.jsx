@@ -66,7 +66,7 @@ const ItemList=()=>{
             <div className="col-12" key={index}>
                 <div className="card p-1 bg-dark">
                     <div className="d-flex align-items-center">
-                        <div className="item-image"  style={{marginRight:'2rem'}}>
+                        <div className="item-image"  style={{marginRight:'15px'}}>
                             <img src={item.imgUrl} alt={item.name} />
                         </div>
                         <div className="flex-grow-1 ">
