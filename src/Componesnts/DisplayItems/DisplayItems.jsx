@@ -2,9 +2,9 @@ import { useContext, useState } from 'react';
 import './DisplayItems.css'
 import { AppContext } from '../../Context/Appcontext';
 import Item from '../Item/Item';
-import SearchBar from '../SearchBar/SearchBar.';
+import SearchBar from '../SearchBar/SearchBar';
 
-const DisplayItems = () => {
+const DisplayItems = ({selectedcategory}) => {
       
       {/** we use a globel state for item from Appcontext */}
       const { itemsData } = useContext(AppContext);
@@ -12,9 +12,12 @@ const DisplayItems = () => {
       {/** we can use searchText to search the item in the item list  */}
       const [searchText, setSearchText]= useState("");
 
+      // hear we make it function like when wwe select a category in explore it will 
+      // filter that category item
       const filteredItems = itemsData.filter(item =>{
-            return item.name.toLowerCase().includes(searchText.toLowerCase);
-      })
+            if(!selectedcategory) return true;
+            return item.categoryId === selectedcategory;
+      }).filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
 
   return (
     <div className="p-3">
@@ -25,8 +28,8 @@ const DisplayItems = () => {
             </div>
       </div>
       <div className="row g-3">
-        {itemsData && itemsData.map((item, index) => (
-          <div key={item.itemId || index} className="col-md-4 col-sm-6">
+        {filteredItems && filteredItems.map((item, index) => (
+          <div key={item.itemId || index} className="col-12 col-sm-6 col-md-4">
             <Item
               itemName={item.name}
               itemprice={item.price}
