@@ -1,0 +1,111 @@
+/* NotFound.css */
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.not-found-title {
+  font-size: 150px;
+  font-weight: 800;
+  margin: 0;
+  color: #fff;
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.not-found-subtitle {
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+  margin: 10px 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.not-found-message {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 400px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.not-found-button {
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #667eea;
+  background-color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.not-found-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  background-color: #f8f8f8;
+}
+
+.not-found-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Pulse Animation for 404 */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .not-found-title {
+    font-size: 100px;
+  }
+
+  .not-found-subtitle {
+    font-size: 24px;
+  }
+
+  .not-found-message {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  .not-found-button {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-title {
+    font-size: 80px;
+  }
+
+  .not-found-subtitle {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .not-found-message {
+    font-size: 14px;
+  }
+}
