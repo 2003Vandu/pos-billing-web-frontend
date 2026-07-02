@@ -32,7 +32,7 @@ const ManageUsers = () => {
 
   return (
     <div className="users-container text-light">
-      <div className="left-column">
+      <div className="left-column overflow-auto">
         <UserForm setUsers={setUsers} />
       </div>
       <div className="right-column">
