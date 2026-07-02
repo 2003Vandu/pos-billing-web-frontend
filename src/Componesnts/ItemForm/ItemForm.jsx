@@ -16,6 +16,8 @@ const ItemForm =()=>
     categoryId:"",
     price:"",
     description:"",
+    stockQuantity: 0,       // ✅ NEW (defaults to 0)
+  lowStockThreshold: 10,  // ✅ NEW (defaults to 10)
   });
 
      const onChangeHandler = (e) => {
@@ -88,6 +90,7 @@ const ItemForm =()=>
                     className="form-control"
                     hidden
                     onChange={(e)=> setImage(e.target.files[0])}
+
                    
                   />
                 </div>
@@ -101,6 +104,7 @@ const ItemForm =()=>
                     placeholder="Item Name"
                     onChange={onChangeHandler}
                     value={data.name}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -110,6 +114,7 @@ const ItemForm =()=>
                     className="form-control" 
                     onChange={onChangeHandler}
                     value={data.categoryId}
+                    required
                     >
                         <option value="">--SELECT CATEGORY--</option>
                         {categories.map( ( (category, index) =>
@@ -125,6 +130,7 @@ const ItemForm =()=>
                     placeholder="&#8377;200.00" 
                     onChange={onChangeHandler} 
                     value={data.price}
+                    required
                     />
                 </div>
                 <div className="mb-2">
@@ -137,8 +143,37 @@ const ItemForm =()=>
                     placeholder="Item description Hear..."
                     onChange={onChangeHandler}
                     value={data.description}
+                    
                   ></textarea>
                 </div>
+                <div className="mb-3">
+                  {/* //4/19/2026 */}
+  <label htmlFor="stockQuantity" className="form-label">Stock Quantity</label>  
+  <input
+    type="number"
+    name="stockQuantity"
+    id="stockQuantity"
+    className="form-control"
+    placeholder="0"
+    onChange={onChangeHandler}
+    value={data.stockQuantity}
+    min="0"
+  />
+</div>
+<div className="mb-2">
+  <label htmlFor="lowStockThreshold" className="form-label">Low Stock Alert At</label>
+  <input
+    type="number"
+    name="lowStockThreshold"
+    id="lowStockThreshold"
+    className="form-control"
+    placeholder="10"
+    onChange={onChangeHandler}
+    value={data.lowStockThreshold}
+    min="0"
+  />
+</div>
+{/* //4/19/2026 */}
                 <button type="submit" className="btn btn-warning w-100" disabled={loading}>
                   {loading ? "Loading...":"Save"}
                 </button>

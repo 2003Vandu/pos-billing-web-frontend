@@ -17,9 +17,11 @@ export const AppContextProvider=(props) =>{
 
     {/** function for the cartitem component inside explore  */} //**>>for CartItemComponent
     const addToCart = (item) => {
-  setCartItems(prevCartItems => {
+    setCartItems(prevCartItems => {
     const existingItem = prevCartItems.find(cartItem => cartItem.itemid === item.itemid);
     if (existingItem) {
+      // ✅ Don't exceed available stock 
+      if (existingItem.quantity >= item.stockQuantity) return prevCartItems;//4/19/2026
       return prevCartItems.map(cartItem =>
         cartItem.itemid === item.itemid
           ? { ...cartItem, quantity: cartItem.quantity + 1 }
@@ -38,6 +40,8 @@ export const AppContextProvider=(props) =>{
 
     //updatequantity **>>for CartItemComponent
     const updateQuantity =(itemid,newQuantity)=>{
+      // ✅ Don't exceed stock, don't go below 1
+      const clamped = Math.min(newQuantity, item.stockQuantity || newQuantity); //4/19/2026
       setCartItems(cartItems.map(item=> item.itemid == itemid ?
         {...item, quantity: newQuantity}:item
       ));
@@ -69,8 +73,11 @@ export const AppContextProvider=(props) =>{
     }, [])
 
     const setAuthData = (token, role) => {
-
      setAuth({token,role});
+    }
+
+    const clearCart=() =>{
+      setCartItems([]);
     }
 
     const contextValue={
@@ -84,7 +91,8 @@ export const AppContextProvider=(props) =>{
         setCartItems: setCartItems,
         addToCart,
         removeFromCart,
-        updateQuantity
+        updateQuantity,
+        clearCart
     }
     return <AppContext.Provider value={contextValue} >
               {props.children}
