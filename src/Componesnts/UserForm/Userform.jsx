@@ -45,11 +45,11 @@ const UserForm =({setUsers})=>
 
 
     return(
-        <div className="mx-2 mt-2">
-      <div className="row">
+        <div className="mx-4 mt-3 ">
+      <div className="row ">
         <div className="card col-md-12">
-          <div className="col-md-12 form-container">
-            <div className="card-body ">
+          <div className="col-md-12 form-container ">
+            <div className="card-body my-5">
               <form onSubmit={onSubmitHandler}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-lable">Name
@@ -62,6 +62,7 @@ const UserForm =({setUsers})=>
                     placeholder="john dho"
                     onChange={onChangeHandler}
                     value={data.name}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -75,6 +76,7 @@ const UserForm =({setUsers})=>
                     placeholder="yourname@example.com"
                     onChange={onChangeHandler}
                     value={data.email}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -86,6 +88,7 @@ const UserForm =({setUsers})=>
                            placeholder="******************" 
                            onChange={onChangeHandler}
                            value={data.password}
+                           required
                            />
                 </div>
                 <button type="submit" className="btn btn-warning w-100" disabled={loading}>
