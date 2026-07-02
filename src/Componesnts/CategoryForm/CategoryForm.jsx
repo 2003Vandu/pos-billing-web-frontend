@@ -105,6 +105,7 @@ const CategoryForm = () => {
                     placeholder="Category Name"
                     onChange={onChageHandler}
                     value={data.name}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -127,7 +128,8 @@ const CategoryForm = () => {
                            id="bgColor"
                            onChange={onChageHandler}
                            value={data.bgColor}
-                           placeholder="#ffffff" />
+                           placeholder="#ffffff"
+                            />
                 </div>
                 <button type="submit" 
                           disabled={loading}
