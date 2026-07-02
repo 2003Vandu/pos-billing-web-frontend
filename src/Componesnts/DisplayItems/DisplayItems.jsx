@@ -35,6 +35,9 @@ const DisplayItems = ({selectedcategory}) => {
               itemprice={item.price}
               itemImage={item.imgUrl}
               itemid={item.itemId}
+              stockQuantity={item.stockQuantity}   //{/* ✅ NEW */}//4/19/2026
+              inStock={item.inStock}              // //{/* ✅ NEW */}//4/19/2026
+              isLowStock={item.isLowStock}         //{/* ✅ NEW */} //4/19/2026
             />
           </div>
         ))}

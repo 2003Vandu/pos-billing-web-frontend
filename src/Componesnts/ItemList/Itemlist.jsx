@@ -75,6 +75,14 @@ const ItemList=()=>{
                             <span className="mb-0 text-black badge rounded-pill text-bg-warning">
                             &#8377;{item.price}
                         </span>
+                        {/* ✅ NEW: Stock indicator */}
+{item.inStock === false ? (
+  <span className="badge bg-danger ms-1">Out of Stock</span>
+) : item.isLowStock ? (
+  <span className="badge bg-warning text-dark ms-1">Low: {item.stockQuantity}</span>
+) : (
+  <span className="badge bg-success ms-1">{item.stockQuantity} units</span>
+)}
                         </div>
                         <div>
                         <button className="btn btn-danger btn-sm" onClick={()=>removeItem(item.itemId)}>

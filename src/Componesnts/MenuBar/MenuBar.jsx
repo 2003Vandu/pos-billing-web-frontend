@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './MenuBar.css';
 import logo from "../../assets/transaction.png";
 import profile from "../../assets/profile.png";
@@ -10,8 +10,11 @@ const MenuBar = () =>{
     // once we logout ti will move to initile page
     const navigate =  useNavigate();
 
+    // form hover a which page we are on navbar
+    const location = useLocation();
+
     // once the token authentication is remove we need to update the state 
-    const {setAuthData} = useContext(AppContext);
+    const {setAuthData, auth} = useContext(AppContext);
 
     const logout =() =>{
         localStorage.removeItem("token");
@@ -19,6 +22,15 @@ const MenuBar = () =>{
         setAuthData(null, null);
         navigate("/login");
     }
+
+    // form hover a which page we are on navbar
+    const isActive =(path)=>{
+        return location.pathname === path;
+    }
+
+    const isAdmin = auth.role ==="ROLE_ADMIN";
+
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-2">
     <a className="navbar-brand" href="#">
@@ -30,19 +42,28 @@ const MenuBar = () =>{
     <div className="collapse navbar-collapse p-1" id="navbarNav">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">DashBoard</Link>
+                <Link className={`nav-link ${isActive('/dashboard') ? 'fw-bold text-warning': ''}`} to="/dashboard">DashBoard</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="/explore">Explore</Link>
+                <Link className={`nav-link ${isActive('/explore') ? 'fw-bold text-warning': ''}`} to="/explore">Explore</Link>
             </li>
+            {
+                isAdmin && (
+                    <>
+                    <li className="nav-item">
+                       <Link className={`nav-link ${isActive('/items') ? 'fw-bold text-warning': ''}`} to="/items">Manage Item</Link>
+                    </li>
+                    <li className="nav-item">
+                       <Link className={`nav-link ${isActive('/category') ? 'fw-bold text-warning': ''}`} to="/category">Manage Categories</Link>
+                    </li>
+                    <li className="nav-item">
+                       <Link className={`nav-link ${isActive('/users') ? 'fw-bold text-warning': ''}`} to="/users">Manage Users</Link>
+                    </li>
+                    </>
+                )
+            }
             <li className="nav-item">
-                <Link className="nav-link" to="/items">Manage Item</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/category">Manage Categories</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/users">Manage Users</Link>
+                <Link className={`nav-link ${isActive('/orders') ? 'fw-bold text-warning': ''}`} to="/orders">Order History</Link>
             </li>
         </ul>
          
