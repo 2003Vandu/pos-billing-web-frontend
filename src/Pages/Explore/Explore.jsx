@@ -14,10 +14,12 @@ const Explore=()=>{
     const {categories}=useContext(AppContext);
     const [selectedcategory, setSelectedCategory] = useState("");
 
-    {/** we nee to use state to capture Customer Name and Number */}
-    const [custemerName, setCustomerName] = useState("")
+    {/** we need to use state to capture Customer Name and Number */}
+    const [customerName, setCustomerName] = useState("")
     const [mobileNumber, setMobileNumber] = useState("");
     return(
+        
+
         <div className="explore-container text-light d-flex flex-column flex-lg-row">
       {/* Left column */}
       <div className="left-column flex-grow-1">
@@ -36,22 +38,28 @@ const Explore=()=>{
             </div>
             {/* Right column */}
                <div className="right-column d-flex flex-column flex-grow-4 ">
-               <div className="customer-form-container" style={{ height: '15%' }}>
+               <div className="customer-form-container flex-shrink-0" >
                       <CustomerForm
                       // we nee to pass the customer props 
-                      custemerName={custemerName}
-                      mobileNumber={mobileNumber}
-                      setCustomerName={setCustomerName}
-                      setMobileNumber={setMobileNumber}
+                      customerName={customerName}           // ✅ Pass value
+                      setCustomerName={setCustomerName}     // ✅ Pass setter
+                      mobileNumber={mobileNumber}           // ✅ Pass value
+                      setMobileNumber={setMobileNumber} 
                       />
                 </div>
-                <hr className="my-5 text-light" />
-                <div className="cart-items-container"style={{height:'52%', overflowy:'auto'}}>
+                <hr className="my-4 text-light" />
+                <div className="cart-items-container flex-grow-1 overflow-auto">
                       <CartItems/>
                 </div>
                 <hr className="my-3 text-light" />
-                <div className="cart-summery-container"style={{height:'30%'}}>
-                     <CartSymmery/>
+                <div className="cart-summery-container flex-shrink-0">
+                    {/** we need to pass the same props to CartSymmery as we pass in customer form   */}
+                     <CartSymmery
+                      customerName={customerName}           // ✅ Pass value
+                      setCustomerName={setCustomerName}     // ✅ Pass setter
+                      mobileNumber={mobileNumber}           // ✅ Pass value
+                      setMobileNumber={setMobileNumber} 
+                      />
                 </div>
 
             </div>

@@ -1,12 +1,22 @@
 .explore-container
 {
     display: flex;
+    flex-direction: column;       /* stack on small screens */
     gap: 20px;
     padding: 20px;
-    height: calc(100vh - 4.5rem);
+    height: calc(100vh - 4.7rem);
     box-sizing: border-box;
+    /*background-color: #2c3335;*/
     background-color: #090a0d;
+
 }
+@media (min-width: 992px) {
+  .explore-container {
+    flex-direction: row;        /* side by side on large screens */
+  }
+   
+}
+
 .left-column
 {
    flex: 0.7;
@@ -44,6 +54,7 @@ height: 100%;
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
+background-color: #090a0d;
 }
 .cart-summary-container {
 flex: 0.3;
