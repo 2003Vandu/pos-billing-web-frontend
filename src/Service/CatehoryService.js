@@ -1,18 +1,13 @@
-import axios from "axios";
+import api from "../Util/api";
 
 export const addCategory = async (category) => {
-
-    return await axios.post('http://localhost:8080/api/v1.0/admin/categories',category, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}})
+    return await api.post('/admin/categories', category);
 }
 
-export const deleteCategory = async(categoryId) => {
-
-   return await axios.delete(`http://localhost:8080/api/v1.0/admin/categories/${categoryId}`, {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+export const deleteCategory = async (categoryId) => {
+    return await api.delete(`/admin/categories/${categoryId}`);
 }
-
-// this is the resone i am going to use webtorm because it wil provide a grate way of
-// order competion
 
 export const fetchCategories = async () => {
-   return await axios.get('http://localhost:8080/api/v1.0/categories', {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
-} 
+    return await api.get('/categories');
+}
