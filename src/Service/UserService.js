@@ -1,27 +1,13 @@
-import axios from "axios";
+import api from "../Util/api";
 
-// For user Featching and creating new users 
-
-export const addUser = async(user)=>{
-
-   return await axios.post('http://localhost:8080/api/v1.0/admin/register',
-      user,
-      {
-         headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}
-      }
-   );
+export const addUser = async (user) => {
+    return await api.post('/admin/register', user);
 }
+
 export const deleteUser = async (id) => {
-  return await axios.delete(
-    `http://localhost:8080/api/v1.0/admin/users/${id}`,
-    {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    }
-  );
+    return await api.delete(`/admin/users/${id}`);
 };
 
-export const fetchUsers = async()=>{
-
-   return await axios.get('http://localhost:8080/api/v1.0/admin/users',
-      {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+export const fetchUsers = async () => {
+    return await api.get('/admin/users');
 }
