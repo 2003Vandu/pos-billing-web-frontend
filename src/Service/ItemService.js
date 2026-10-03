@@ -1,19 +1,13 @@
-import axios from "axios";
+import api from "../Util/api";
 
-// for item creation read and delete simple user can only read items
-export const addItem = async (item)=>{
-   return await axios.post(`http://localhost:8080/api/v1.0/admin/items`,item 
-        ,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+export const addItem = async (item) => {
+    return await api.post('/admin/items', item);
 }
 
-export  const deleteItem = async (itemId)=>{
-      
-     return await axios.delete(`http://localhost:8080/api/v1.0/admin/itemId/${itemId}`,
-        {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+export const deleteItem = async (itemId) => {
+    return await api.delete(`/admin/items/${itemId}`);
 }
 
-export const fetchItems = async ()=>
-{
-    return await axios.get('http://localhost:8080/api/v1.0/items',
-        {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}});
+export const fetchItems = async () => {
+    return await api.get('/items');
 }
